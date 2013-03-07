@@ -30,12 +30,12 @@ class Apifacebook {
         $config = Api::facebook();
         $this->app_id = $config['app_id'];
         $this->app_secret = $config['app_secret'];
-        $this->usuario = new Usuario();
     }
 
     public function cuenta() {
+    	$usuario = new Usuario();
 	    // Verificamos que tengamos una sesión guardada de usuario Facebook
-	    $this->facebookData = $this->usuario->getFacebook(Session::get('id'));
+	    $this->facebookData = $usuario->getFacebook(Session::get('id'));
 		$facebook = new Facebook(array(
 		  'appId'  => $this->app_id,
 		  'secret' => $this->app_secret
@@ -46,29 +46,31 @@ class Apifacebook {
 			// Solicitamos una identidad al api de facebook
 			$user = $facebook->getUser();
 
-			if ($user) { // De no ser asi solicitamos un url de logeo en Facebook
+			if ($user) {
 				try {
 					// Solicitamos los datos de Usuario
-					$user_profile = $facebook->api('/me');
+					$facebook->api('/me');
 					// Recogemos los datos de la sesión
-					$user_id = $_SESSION['fb_'.$this->app_id.'_user_id'];
+					$user_fb = $_SESSION['fb_'.$this->app_id.'_user_id'];
 					$access_token = $_SESSION['fb_'.$this->app_id.'_access_token'];
 
 					// Los guardamos en la base de datos
-					$this->usuario->setFacebook(Session::get('id'), $user_id, $access_token);
+					$rs = $usuario->setFacebook(Session::get('id'), $user_fb, $access_token);
 
-					// destruimos las variables de session
-					unset($_SESSION['fb_'.$this->app_id.'_code']);
-					unset($_SESSION['fb_'.$this->app_id.'_user_id']);
-					unset($_SESSION['fb_'.$this->app_id.'_access_token']);
-
-					// Redireccionamos aqui despues agregarla la cuenta
-					// Router::to(); // FIXME: Refrescar pagina
-				} catch ( FaceApiException $e ) {
+					if ( $rs ) {
+						// destruimos las variables de session
+						unset($_SESSION['fb_'.$this->app_id.'_code']);
+						unset($_SESSION['fb_'.$this->app_id.'_user_id']);
+						unset($_SESSION['fb_'.$this->app_id.'_access_token']);
+				        // Parametrizamos con la identidad que tenemos guardada
+						$this->facebookData['image'] = 'https://graph.facebook.com/'.$user_fb.'/picture';
+            			$this->facebookData['profile'] = 'http://www.facebook.com/'.$user_fb;
+					}
+				} catch ( FacebookApiException $e ) {
 					Flash::error($e);
 					$user = null;
 				}
-			} else {
+			} else { // De no ser asi solicitamos un url de logeo en Facebook
 				$this->facebookLink = $facebook->getLoginUrl();
 			}
 		} else {

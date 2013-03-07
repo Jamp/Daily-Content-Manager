@@ -217,7 +217,7 @@ class Usuario extends ActiveRecord {
     // Redes Sociales
 
     ///// Twitter //////
-    function getTwitter($id) {
+    public function getTwitter($id) {
         $salida = False;
         $r = $this->find($id);
 
@@ -242,31 +242,32 @@ class Usuario extends ActiveRecord {
     }
     ///// Twitter //////
 
-    ///// Twitter //////
-    function getFacebook($id) {
+    ///// Facebook //////
+    public function getFacebook($id) {
         $salida = False;
         $r = $this->find($id);
 
         $o = array(
             'id' => $r->id,
-            'user_id' => $r->user_id,
+            'user_id' => $r->user_fb,
             'access_token' => $r->user_token,
         );
 
-        if ( !empty($r->user_id) ) {
+        if ( !empty($r->user_fb) ) {
             $salida = $o;
         }
         return $salida;
     }
 
-    public function setFacebook($id, $user_id = '', $token = '') {
+    public function setFacebook($id, $user= '', $token = '') {
         $r = $this->find($id);
-        $r->user_id = $user_id;
-        $r->access_token = $token;
+        print "Modelo ".$user.' '.$token;
+        $r->user_fb = Filter::get($user, 'string');
+        $r->access_token = Filter::get($token, 'string');
 
-        return $r->save();
+        return $r->update();
     }
-    ///// Twitter //////
+    ///// Facebook //////
 }
 
 ?>

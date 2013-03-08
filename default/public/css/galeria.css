@@ -2,8 +2,13 @@
 
 
 article.album{	border:3px solid #ccc;	width: 181px;height:280px;display: block;	padding: 5px ;	margin: 10px  10px ;	float:left;	background: #BFBFBF;
-border-radius:5px; -webkit-border-radius:5px;}
-article.album:hover{box-shadow: 2px 2px 5px #000;}
+border-radius:5px; -webkit-border-radius:5px;
+transition:all 1s;
+-moz-transition:all 1s ease; /* Firefox 4 */
+-webkit-transition:all 1s ease; /* Safari and Chrome */
+-o-transition:all 1s ease; /* Opera */
+ }
+article.album:hover{  transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1);}
 article.album h3{
 	font-size: 12px;
 	font-family: Helvetica, Sans-serif, Arial;
@@ -14,15 +19,18 @@ article.album h3{
 
 	margin:5px;
 }
-
-article.album p{
+article.album hr{ color:white;}
+article.album section.texto h3 span{
 	color:#7c7c7c;
-	font-size: 10px;
+	font-size: 09px;
 	font-weight: lighter;
+		text-align: left;
 }
 article.album section.texto{
-	border:thin solid red;
-
+	border:thin solid #f4f4f4;
+background: #fff;
+border-radius: 5% ;
+padding: 12px;
 }
 article.album img {
 	border:5px solid #fff ;
@@ -31,5 +39,3 @@ article.album img {
 	max-height: 280px;
 	max-width: 168px;
 }
-
-

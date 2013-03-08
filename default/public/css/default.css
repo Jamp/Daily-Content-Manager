@@ -117,8 +117,8 @@ div#pagina { padding:0; margin:0 auto; }
 .contenido p { font:normal 14px Arial, Helvetica, sans-serif; color:#5d5d5d; line-height:1.8em; padding:5px 5px; margin:0; }
 .contenido a { text-decoration:none; color:#dd4200; line-height:1.8em; font: normal 12px Arial, Helvetica, sans-serif; }
 div.full { padding:5px 0; margin:0; }
-div.right , section.right { width:350px; float:right; padding:5px 0; margin:0; }
-div.left,section.left { width:580px; float:left; padding:5px 0; margin:0; }
+div.right , section.right { width:279px; float:right; padding:5px 0; margin:0; }
+div.left,section.left { width:651px; float:left; padding:5px 0; margin:0; }
 div.block { width:255px; float:left; margin:10px; padding:0; }
 .port_resize { width:290px; float:left; margin:10px 5px 10px 5px; padding:10px 5px; border:1px solid #dedede; background:#fff; }
 .port_resize img { margin:0; padding:0; position:relative; z-index:2;}

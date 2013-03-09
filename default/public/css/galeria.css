@@ -38,4 +38,21 @@ article.album img {
 	margin: 3px;
 	max-height: 280px;
 	max-width: 168px;
+	transform:rotate(5deg);
+	box-shadow: 1px 1px 3px #070707;
+	background: #fff;
+}
+
+/*Fondo 1 y fondo son capas colocadas para crear el efecto de barajas*/
+.fondo1,.fondo2 {
+	border: 5px solid #fff;
+	margin:0;
+	padding: 0;
+	background: #c4c4c4;
+	transform:rotate(-10deg);
+		box-shadow: 1px 1px 3px #070707;
+}
+.fondo1 {
+background: #020202;
+	transform:rotate(5deg);
 }

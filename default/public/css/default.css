@@ -8,6 +8,8 @@ html, body { padding:0; margin:0; }
 body { font: 62.5% arial,sans-serif;text-align:left; width:100%; background: url(../img/pagina/bg_pagina.gif); }
 a { text-decoration:none; }
 a:hover { text-decoration:underline; }
+h1{ color: #4695D6;	font-weight: bolder;font-family: Helvetica, arial, Sans-Serif;	font-size: 18px;
+}
 h2 { font: normal 30px Arial, Helvetica, sans-serif; color:#2166AC; margin: 0; padding: 0}
 h3 { font: bold 14px Arial, Helvetica, sans-serif; color:#282828; margin:0; padding: 0 }
 
@@ -29,7 +31,7 @@ div#social-media a.thre { background: url(../img/pagina/RSS_1_hove.gif) top no-r
 div#social-media a:hover.thre { background: url(../img/pagina/RSS_1.gif) top no-repeat; }
 
 /**** Navegador *****/
-div#contenedor-navegador{ height:41px; 
+div#contenedor-navegador{ height:41px;
 background: #1e5799; /* Old browsers */
 background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
@@ -47,7 +49,7 @@ div#navegador { width:960px; margin:0 auto; padding:0; }
 #menu ul li { float:left; margin:0; padding:0; border:0; }
 #menu ul li a { float:left; margin:0; padding:12px 0; color:#fff; font:normal 12px Arial, Helvetica, sans-serif; text-decoration:none; text-align: center; min-width: 80px;}
 #menu ul li a span { padding:12px 9px; background:none; }
-#menu ul li a:hover { 
+#menu ul li a:hover {
 	/*background: url(../img/pagina/r_menu.gif) */
 background: #54a6e5; /* Old browsers */
 background: -moz-linear-gradient(top,  #54a6e5 0%, #1076c9 49%, #117dd6 50%, #0a4d99 100%); /* FF3.6+ */
@@ -61,7 +63,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54a6e5', end
 
 
 	no-repeat right; }
-#menu ul li a:hover span { 
+#menu ul li a:hover span {
 	/*background:url(../img/pagina/l_menu.gif)*/
 background: #54a6e5; /* Old browsers */
 background: -moz-linear-gradient(top,  #54a6e5 0%, #1076c9 49%, #117dd6 50%, #0a4d99 100%); /* FF3.6+ */
@@ -166,3 +168,9 @@ li.bg, .bg { clear:both; border-bottom:1px solid #dedede; padding:10px 0 0 0; ma
 .paginacion span.paginacion-anterior a:hover, div.paginacion span.paginacion-siguiente a:hover {text-decoration: underline;}
 .paginacion span.paginacion-numeracion-actual {font-weight: bold;text-decoration: none; padding: 0px 2px;}
 .paginacion span.paginacion-numeracion a, a:hover {text-decoration: none;}
+.b_vertical{
+	background-color: #fff;
+	width:270px;
+	height:400px;
+	margin:auto;
+}

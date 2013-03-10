@@ -39,9 +39,32 @@ class Configuracion extends ActiveRecord {
     }
 
     public function setOpcion($opcion, $valor) {
-        
+        $salida = False;
+        $rs = $this->find_first("opcion = '$opcion'");
+        if (!$rs) {
+            $this->opcion = Filter::get($opcion, 'string');
+            $this->valor = $valor;
+            $salida = $this->create();
+        } elseif (empty($valor)) {
+            $salida = $rs->delete();
+        } else {
+            $rs->valor = $valor;
+            $salida = $rs->update();
+        }
+        return $salida;
     }
-   
+
+    public function setConfiguracion($array){
+        $rs = True;
+        if (!is_array($array)) throw new Exception('el parametro debe ser un array');
+        $this->begin();
+        foreach ($array as $key => $value) {
+            $rs = $rs && $this->setOpcion($key, $value);
+            //if (!$rs) break;
+        }
+        ($rs) ? $this->commit() : $this->rollback();
+        return $rs;
+    }
 }
 
 ?>

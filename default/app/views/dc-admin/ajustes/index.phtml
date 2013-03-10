@@ -2,7 +2,7 @@
 
 <div class="contenido">
     <div class="full"><h1 class="text-shadow">Ajuste Generales</h1></div>
-    <?php echo ExtForm::open('dc-admin/usuario/agregar/', 'post', array('class'=>'post'), true); ?>
+    <?php echo ExtForm::openMultipart(null, 'post', array('class'=>'post'), true); ?>
     <div class="left medium">
         <div class="box ui-corner-all ui-widget-content" id="contenido-post">
             <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Empresa</h3></div>
@@ -11,31 +11,33 @@
                     <li>
                         <label for="usuario_nombre" class="desc">Razón Social<span class="req">*</span></label>
                         <div>
-                            <?php echo ExtForm::text('general.nombre', array('class'=>'medium'), null, '', true, true); ?>
+                            <?php echo ExtForm::text('general.nombre', array('class'=>'medium'), $config['nombre'], '', true, true); ?>
                         </div>
                     </li>
                     <li>
                         <label for="usuario_nombre" class="desc">RIF<span class="req">*</span></label>
                         <div>
-                            <?php echo ExtForm::text('general.rif', array('class'=>'small'), null, '', true, true); ?>
+                            <?php echo ExtForm::text('general.rif', array('class'=>'small'), $config['rif'], '', true, true); ?>
                         </div>
                     </li>
                     <li>
                         <label for="usuario_apellido" class="desc">Titulo de Sitio<span class="req">*</span></label>
                         <div>
-                            <?php echo ExtForm::text('general.titulo', array('class'=>'medium'), null, '', true, true); ?>
+                            <?php echo ExtForm::text('general.titulo', array('class'=>'medium'), $config['titulo'], '', true, true); ?>
                         </div>
                     </li>
                     <li>
                         <label for="usuario_email" class="desc">Descripción Corta</label>
+                        <span>(Pocas palabras que describan el sitio)</span>
                         <div>
-                            <?php echo ExtForm::text('general.descripcion', array('class'=>'large'), null, ''); ?>
+                            <?php echo ExtForm::text('general.descripcion', array('class'=>'large'), $config['descripcion'], ''); ?>
                         </div>
                     </li>
                     <li>
                         <label for="usuario_login" class="desc">Correo Electrónico Administrativo<span class="req">*</span></label>
+                        	<span>(Correo para recibir principales notificaciones de sistema)</span>
                         <div>
-                            <?php echo ExtForm::text('general.email', array('class'=>'medium email'), null, '', true, true); ?>
+                            <?php echo ExtForm::text('general.email', array('class'=>'medium email'), $config['email'], '', true, true); ?>
                         </div>
                     </li>
                 </ul>
@@ -44,13 +46,42 @@
 
         <div class="break"></div>
 
+        <div class="box ui-corner-all ui-widget-content" id="contenido-post">
+            <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Estetica</h3></div>
+            <div class="box-contenido box-form">
+                <ul>
+                    <li class="twoColumns">
+                    	<label for="general.favicon" class="desc">Habilitar favicon</label>
+                        <div>
+                            <span>
+                                <?php echo ExtForm::radio('general.favicon', 'on', array('class'=>''), $favon, 'Si'); ?>
+                            </span>
+                            <span>
+                                <?php echo ExtForm::radio('general.favicon', 'off', array('class'=>''), $favoff, 'No'); ?>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="usuario_nombre" class="desc">Logo</label>
+                        <div>
+                            <?php echo Form::file('logo'); //ExtForm::text('general.logo', array('class'=>'medium'), null, '', false, true).ExtForm::submit('Subir',array('id'=>'enviarForm','name'=>'btn_crear'));; ?>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right medium">
         <div class="box ui-corner-all ui-widget-content" id="publicar-post">
             <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Descripción de la Empresa</h3></div>
             <div class="box-contenido box-form">
                 <ul>
                     <li>
+                        <span>(Dirección de la empresa)</span>
                         <div>
-                            <?php echo ExtForm::textarea('general.direccion', array('class'=>'tinymce large'), null, '', 0, false, true); ?>
+                            <?php echo ExtForm::textarea('general.direccion', array('class'=>'tinymce large'), $config['direccion'], '', 0, false, true); ?>
                         </div>
                     </li>
                 </ul>
@@ -67,9 +98,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="right medium">
-        <?php if ( Router::get('action') != 'editar' ) View::partial('redes_sociales/cuentas'); ?>
         <div class="break"></div>
+
+        <?php View::partial('redes_sociales/cuentas'); ?>
+
     </div>

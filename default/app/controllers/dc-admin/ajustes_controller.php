@@ -27,29 +27,43 @@ class AjustesController extends AppController {
     }
 
     public function index() {
+        $title = 'Ajustes Generales';
+        if( Input::hasPost('general') ){
+            if ( $this->configurar->setConfiguracion(Input::post('general')) ) Flash::valid('Configuración Guardada con éxito');
+        }
+        $this->favon = ( $this->config['favicon'] == 'on' )?True:False;
+        $this->favoff = ( $this->config['favicon'] == 'off' )?True:False;
+    }
 
+    public function blog() {
+        $title = 'Ajustes del Blog';
+        if( Input::hasPost('blog') ){
+            if ( $this->configurar->setConfiguracion(Input::post('blog')) ) Flash::valid('Configuración Guardada con éxito');
+        }
+        $this->comentarioOn = ( $this->config['habilitar_comentarios'] == 'on' )?True:False;
+        $this->comentarioOff = ( $this->config['habilitar_comentarios'] == 'off' )?True:False;
     }
 
     /**
      * Método principal para listar las categorías y la búsqueda de las mismas
      */
-    public function publicaciones() {
+    // public function publicaciones() {
 
-        $configuracion = new Configuracion();
-        $configuracion = $configuracion->getOpcion();
-        $configuracion->habilitar_comentarios = $configuracion;
+    //     $configuracion = new Configuracion();
+    //     $configuracion = $configuracion->getOpcion();
+    //     $configuracion->habilitar_comentarios = $configuracion;
 
-        /*
 
-        $categoria = new Taxonomia();
-        if(Input::hasPost('parametro')) {
-            $nombre = Filter::get(Input::post('parametro'),'alnum');
-            $this->categoria = (strlen($nombre) > 0) ? $categoria->buscarTaxonomia(Taxonomia::CATEGORIA,$nombre) : null;
-            $this->busqueda = $nombre;
-        } else {
-            $this->categoria = $categoria->listarTaxonomia('categoria','desc');
-        } */
-    }
+
+    //     $categoria = new Taxonomia();
+    //     if(Input::hasPost('parametro')) {
+    //         $nombre = Filter::get(Input::post('parametro'),'alnum');
+    //         $this->categoria = (strlen($nombre) > 0) ? $categoria->buscarTaxonomia(Taxonomia::CATEGORIA,$nombre) : null;
+    //         $this->busqueda = $nombre;
+    //     } else {
+    //         $this->categoria = $categoria->listarTaxonomia('categoria','desc');
+    //     }
+    // }
 
 //    /**
 //     * Método para registrar las etiquetas

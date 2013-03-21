@@ -28,11 +28,15 @@ article.album section.texto{
 background: #fff;
 border-radius: 5% ;
 padding: 12px;
+box-shadow: 1px 1px 3px #070707;
+-webkit-box-shadow: 1px 1px 3px #070707;
+-moz-box-shadow: 1px 1px 3px #070707;
+-o-box-shadow: 1px 1px 3px #070707;
 }
 article.album img {
 	border:5px solid #fff ;
 	box-shadow: 5px 5px  5px #c4c4c4, -5px -5px  5px #c4c4c4;
-	margin: 3px;
+	margin: 4px;
 	max-height: 280px;
 	max-width: 168px;
 	transform:rotate(5deg);

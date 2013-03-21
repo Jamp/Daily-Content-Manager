@@ -1,17 +1,49 @@
 
 <?php Tag::css('galeria')?>
+
+<!--
+
+///////////////////////////////////////
+
+el album esta conformado por:
+*** article. album
+*** div .fondo1 + div.fondo.2
+*** imagen del album
+*** h3 titulo del album
+*** p fecha
+
+//////////////////////////////////////
+ -->
+
 <section class="left">
 	<hr>
 	<article class="album">
+		<section class="texto">
 				<h3>Titulo un Poco más Largo</h3>
-		<p>Fecha:31/02/2014</p>
-		<?php echo Html::img('logo_negro.png', 'esto es una foto')?>
+		<span>Fecha:31/02/2014</span>
+		</section>
+		<hr/>
+		<div class="fondo2">
+		<div class="fondo1">
+			<?php echo Html::img('logo_negro.png', 'esto es una foto')?>
+		</div>
+		</div>
+
+
+
+
 
 	</article>
 	<article class="album">
-		<?php echo Html::img('slide/noticiero_que_pasa_11.jpg', 'esto es una foto')?>
-				<h3>las mujeres haciendo un harlem shake</h3>
-		<p>Fecha:31/02/2014</p>
+			<section class="texto">
+			<h3>las mujeres haciendo un harlem shake</h3>
+		<span>Fecha:31/02/2014</span>
+		</section>
+		<hr/>
+		<div class="fondo1">
+		<div class="fondo2">
+			<?php echo Html::img('slide/noticiero_que_pasa_11.jpg', 'esto es una foto')?>
+		</div></div>
 
 	</article>
 

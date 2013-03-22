@@ -30,7 +30,7 @@ class PostController extends AppController {
      */
     public function index() {
         //Titulo de la página
-        $this->title = 'Publicaciones';
+        $this->title = 'Publicaciones ';
         //Verifico si ha enviado algún parámetro para inicializar la búsqueda
         if(Input::hasPost('parametro')) {
             $param = Input::post('parametro');
@@ -222,6 +222,7 @@ class PostController extends AppController {
                 Router::redirect('dc-admin/post/editar/'.$result->id.'/key/'.md5($result->id.$this->ipKey.$this->expKey.'post').'/');
             } else {
                 Flash::info('La llave de acceso ha caducado. Por favor intente nuevamente');
+                Router::toAction('listar/');
             }
         } else {
             //Armo la llave con el código de la url

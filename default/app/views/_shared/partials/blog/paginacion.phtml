@@ -1,13 +1,12 @@
     <div class="paginacion<?php if(Router::get('module') == 'dc-admin') { echo ' ui-state-default text-shadow'; } ?> ">
     <?php
 
-    function setUrl($route){
-        $url = explode('pag', $route);
-        $rs = $url[0];
-        return trim($rs,'/');
+    if (isset($destiny)) {
+        $parametros = implode('/', Router::get('parameters')).'/';
+        $url = Utils::getUrl($destiny.$parametros);
+    } else {
+        $url = Utils::getUrl(Router::get('route'));
     }
-
-    $url = setUrl(Router::get('route'));
     $str = "";
     if($objeto->prev) {
         $str="<span class=\"paginacion-anterior\">";

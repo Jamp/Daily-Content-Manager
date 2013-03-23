@@ -8,7 +8,7 @@
 /***** Slider *****/
 
 /* Contenedor */
-.contenedor div.slider { margin:10px auto; padding:10px 40px; width:880px; height:306px; border:0; background: #0c0c0c;}
+.contenedor div.slider { margin:10px auto; padding:10px 40px; width:880px; height:306px; border:0; /* color de fondo  background: #0c0c0c;*/}
 .contenedor div.slider_shadow { position: relative; top: -10px; width: 960px; height: 44px; margin: 0 auto; padding: 0px; background: url(../img/slide/bg_slideshow.jpg) no-repeat bottom; z-index: -1}
 .contenedor div.slider { -moz-box-shadow: #0c0c0c 0 0 10px; -webkit-box-shadow: #0c0c0c 0 0 10px; -khtml-box-shadow: #0c0c0c 0 0 10px;box-shadow: #0c0c0c 0 0 10px; }
 .contenedor li.slide div.slide_text { float:left; width:360px; margin:22px 0px 0px 20px; padding:0;}
@@ -23,7 +23,7 @@
 #slider { margin:10px auto 0 auto; padding:0; list-style:none; background:url(../img/slide/bg_slide.png) repeat-y right top; }
 #slider ul,
 #slider li { margin:0; padding:0; list-style:none; }
-#slider li { width:870px; height:280px; overflow:hidden; padding:0; margin:0 auto; }
+#slider li { width:870px; height:280px; overflow:hidden; padding:0; margin:0 auto; background:#fff;}
 p#controls { margin:0; position:relative; }
 #prevBtn,
 #nextBtn { display:block; margin:0; overflow:hidden; width:40px; height:40px; position:absolute;}

@@ -1,12 +1,12 @@
 <?php View::partial('mensaje'); ?>
 
-<div class="contenido">        
+<div class="contenido">
     <div class="left large"><h1 class="text-shadow"><?php echo ucfirst($clasificacion).'s'; ?><span><?php if(isset($busqueda)) { echo "Resultado de la búsqueda para \"$busqueda\""; }; ?></span> </h1></div>
     <div class="right small">
         <?php View::partial('admin/form_busqueda', array('action'=>'')); ?>
     </div>
     <div class="clr"></div>
-    
+
     <div class="left small">
         <div class="box ui-corner-all ui-widget-content" id="nueva-etiqueta">
             <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Nueva <?php echo $clasificacion; ?></h3></div>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="right large">
         <div class="box ui-corner-all ui-widget-content" id="listado-etiqueta">
             <table class="data-grid" cellspacing="0">
@@ -79,7 +79,7 @@
     </div>
     <div class="break"></div>
 </div>
-    
+
 <!-- Alertas -->
 <script type="text/javascript">
     var link_action;
@@ -93,5 +93,5 @@
     $(function() {
         $('#limpiar').click(function(){ document.getElementById('formulario').reset();limpiar_err();});
         $('tr','tbody').hover(function(){$(this).addClass('tr-hover'); },function(){$(this).removeClass('tr-hover'); },function() {});
-    });    
+    });
  </script>

@@ -1,0 +1,114 @@
+<?php View::partial('mensaje'); ?>
+
+<div class="contenido">
+    <div class="left large"><h1 class="text-shadow">Categoría <span><?php if(isset($parametro)) { echo "Resultado de la búsqueda para \"$parametro\""; }; ?></span></h1></div>
+
+    <div class="clr"></div>
+
+    <?php // View::partial('admin/usuario/sub-nav'); ?>
+    <div class="left small">
+        <div class="box ui-corner-all ui-widget-content" id="nueva-etiqueta">
+            <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Nueva</h3></div>
+            <div class="box-contenido box-form">
+                <?php echo ExtForm::open('', 'post', '', true); echo ExtForm::hidden('categoria.id'); ?>
+                <ul>
+                    <li>
+                        <label for="taxonomia_nombre" class="desc">Nombre<span class="req">*</span></label>
+                        <div>
+                            <?php echo ExtForm::text('categoria.nombre', array('class'=>'texto full'), null, '', true, true); ?>
+                            <div class="input-info">Nombre como se mostrará la categoría de links.<br />Ejemplo: Tutorial</div>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="taxonomia_url" class="desc">Descripción</label>
+                        <div>
+                            <?php echo ExtForm::text('categoria.descripcion', array('class'=>'slug full'), null, '', false, false); ?>
+                            <div class="input-info">Descripción corta de la categoría</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label for="taxonomia_url" class="desc">Prioridad</label>
+                            <?php echo ExtForm::select('categoria.prioridad', $prioridad, null, '', false, true); ?>
+                            <div class="input-info">Si cambiamos la prioridad se ordenará de mayor a menor prioridad,<br/> de ser cero(0) será ordenado por orden alfabetico </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <?php echo SecurityKey::generateKey(); ?>
+                        </div>
+                    </li>
+                </ul>
+                 <div class="box-botones">
+                    <div class="left medium">
+                        <span><?php echo ExtForm::submit('Guardar'); ?></span>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <?php echo ExtForm::close(); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="right large">
+
+        <div class="box ui-corner-all ui-widget-content" id="data-grid">
+            <table class="data-grid" cellspacing="0">
+                <thead class="ui-state-default ui-corner-tl ui-corner-tr">
+                    <tr class="text-shadow">
+                        <th class="columna-check">&nbsp</th>
+                        <th class="columna-titulo">Nombre</th>
+                        <th class="columna-titulo font-center">slug</th>
+                        <th class="columna-autor font-center">Prioridad</th>
+                        <th class="columna-comentario font-center">Enlaces</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ( $categorias->total == 0)
+                        print "<td colspan='6' class='strong font-large font-center'>Categoría Vacía</td>";
+                    else
+                    foreach ($categorias->items as $fila) {
+                    ?>
+
+                    <?php $validKey = md5($fila->id.$ipKey.$expKey.'categoria'); ?>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="">
+                            <div>
+                                <span class="strong"><?php echo $fila->nombre; ?></span>
+                                <div class="row-actions font-small">
+                                    <span class="row-action-approve"><?php echo Html::link("dc-admin/enlace/modificar_categoria/$fila->id/key/$validKey/",'Modificar');?> | </span>
+                                    <span class="row-action-delete"><?php echo Html::link("dc-admin/enlace/eliminar_categoria/$fila->id/key/$validKey/",'Eliminar');?></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="font-small font-center"><?php echo $fila->slug; ?></td>
+                        <td class="font-small font-center"><?php echo $fila->prioridad; ?></td>
+                        <td class="font-small font-center"><?php echo $fila->cantidad; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <?php View::partial('paginate',false,array('objeto'=>$categorias, 'tipo'=>'dc-admin')); ?>
+        </div>
+        <div class="break"></div>
+
+    </div>
+
+</div>
+
+<!-- Alertas -->
+<script type="text/javascript">
+    var link_action;
+    $('a','.row-action-delete').click(function(event){ event.preventDefault(); link_action = $(this).attr('href'); $('#eliminar-post').dialog('open'); });
+    $(function() { $("#eliminar-post").dialog({ autoOpen: false, width: 400, height:155, modal: true, buttons: { 'Cancelar': function() { $(this).dialog('close'); } ,'Aceptar': function() { location.href = link_action; } } }); });
+</script>
+<div id="eliminar-post" title="Dailyscript - Web | App | Media" class="confirm-dialog">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Deseas borrar permantentemente este categoría?. </p>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('tr','tbody').hover(function(){$(this).addClass('tr-hover'); },function(){$(this).removeClass('tr-hover'); },function() {});
+    });
+ </script>

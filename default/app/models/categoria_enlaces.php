@@ -3,7 +3,7 @@
 /**
 *
 */
-class categoria_enlaces extends ActiveRecord
+class CategoriaEnlaces extends ActiveRecord
 {
     protected $logger = True;
 

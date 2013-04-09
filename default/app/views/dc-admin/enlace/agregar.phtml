@@ -1,0 +1,101 @@
+<?php View::partial('mensaje'); ?>
+
+<div class="contenido">
+    <div class="left large"><h1 class="text-shadow">Nuevo Enlace<span><?php if(isset($parametro)) { echo "Resultado de la búsqueda para \"$parametro\""; }; ?></span></h1></div>
+
+    <div class="clr"></div>
+
+    <?php // View::partial('admin/usuario/sub-nav'); ?>
+    <?php echo ExtForm::open('', 'post', '', true); ?>
+    <div class="left medium">
+        <div class="box ui-corner-all ui-widget-content" id="nueva-etiqueta">
+            <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Datos</h3></div>
+            <div class="box-contenido box-form">
+                <ul>
+                    <li>
+                        <label for="taxonomia_nombre" class="desc">Nombre<span class="req">*</span></label>
+                        <div>
+                            <?php echo ExtForm::hidden('enlaces.id', null); ?>
+                            <?php echo ExtForm::text('enlaces.nombre', array('class'=>'texto full', $disabled=>''), null, '', true, true); ?>
+                            <div class="input-info">Nombre como se mostrará la categoría de links.<br />Ejemplo: Tutorial</div>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="taxonomia_url" class="desc">Descripción</label>
+                        <div>
+                            <?php echo ExtForm::text('enlaces.descripcion', array('class'=>'slug full', $disabled=>''), null, '', false, false); ?>
+                            <div class="input-info">Descripción corta de la categoría</div>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="taxonomia_url" class="desc">Descripción</label>
+                        <div>
+                            <?php echo ExtForm::text('enlaces.url', array('class'=>'full', $disabled=>''), null, '', false, false); ?>
+                            <div class="input-info">Descripción corta de la categoría</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label for="taxonomia_url" class="desc">Prioridad</label>
+                            <?php echo ExtForm::select('enlaces.prioridad', $prioridad,  array('class'=>'full'), '', false, true); ?>
+                            <div class="input-info">Si cambiamos la prioridad se ordenará de mayor a menor prioridad,<br/> de ser cero(0) será ordenado por orden alfabetico </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <?php echo SecurityKey::generateKey(); ?>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="right medium">
+        <div class="box ui-corner-all ui-widget-content" id="nueva-etiqueta">
+            <div class="box-titulo ui-state-default ui-corner-tl ui-corner-tr"><h3 class="text-shadow">Crear</h3></div>
+            <div class="box-contenido box-form">
+                <ul>
+                    <li>
+                        <label for="taxonomia_nombre" class="desc">Categoría<span class="req">*</span></label>
+                        <div>
+                            <?php echo ExtForm::dbSelect('enlaces.categoria_id','nombre',array('categoria','getCategoria'), '--Seleccione --', array('class'=>'full', $disabled=>''), null, '', true, true); ?>
+                            <div class="input-info">Nombre como se mostrará la categoría de links.<br />Ejemplo: Tutorial</div>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="taxonomia_url" class="desc">Visibilidad</label>
+                        <div>
+                            <?php echo ExtForm::select('enlaces.visible', $visible, array('class'=>'full'), '', false, true); ?>
+                            <div class="input-info">Determina si el link es visible o no</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label for="taxonomia_url" class="desc">Target</label>
+                            <?php echo ExtForm::select('enlaces.target', $target, array('class'=>'full'), '', false, true); ?>
+                            <div class="input-info">Determina como va a abrir el enlace</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="box-botones">
+                            <div class="left medium">
+                                <span><?php echo ExtForm::submit('Guardar'); ?></span>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php echo ExtForm::close(); ?>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ if ( $('#enlaces_url').val() == '' ) {
+    $('#enlaces_url').val('http://');
+ }
+});
+</script>

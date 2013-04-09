@@ -1,0 +1,70 @@
+<?php View::partial('mensaje'); ?>
+
+<div class="contenido">
+    <div class="left large"><h1 class="text-shadow">Categoría <span><?php if(isset($parametro)) { echo "Resultado de la búsqueda para \"$parametro\""; }; ?></span></h1></div>
+
+    <?php // View::partial('admin/usuario/sub-nav'); ?>
+    <div class="full">
+
+        <div class="box ui-corner-all ui-widget-content" id="data-grid">
+            <table class="data-grid" cellspacing="0">
+                <thead class="ui-state-default ui-corner-tl ui-corner-tr">
+                    <tr class="text-shadow">
+                        <th class="columna-check">&nbsp</th>
+                        <th class="columna-titulo">Nombre</th>
+                        <th class="columna-titulo">URL</th>
+                        <th class="columna-titulo">Categoría</th>
+                        <th class="columna-autor font-center">Visibilidad</th>
+                        <th class="columna-autor font-center">Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ( $enlaces->total == 0)
+                        print "<td colspan='6' class='strong font-large font-center'>Enlaces Vacios</td>";
+                    else
+                    foreach ($enlaces->items as $fila) {
+                    ?>
+
+                    <?php $validKey = md5($fila->id.$ipKey.$expKey.'enlace'); ?>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="">
+                            <div>
+                                <span class="strong"><?php echo $fila->nombre; ?></span>
+                                <div class="row-actions font-small">
+                                    <span class="row-action-approve"><?php echo Html::link("dc-admin/enlace/agregar/$fila->id/key/$validKey/",'Modificar');?> | </span>
+                                    <span class="row-action-delete"><?php echo Html::link("dc-admin/enlace/eliminar_enlace/$fila->id/key/$validKey/",'Eliminar');?></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="font-small"><a href="<?php echo $fila->url; ?>" target="_blank"><?php echo $fila->url; ?></a></td>
+                        <td class="font-small"><?php echo $fila->categoria_nombre; ?></td>
+                        <td class="font-small font-center"><?php echo $fila->visible; ?></td>
+                        <td class="font-small font-center"><?php echo $fila->prioridad; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <?php View::partial('paginate',false,array('objeto'=>$enlaces, 'tipo'=>'dc-admin')); ?>
+        </div>
+        <div class="break"></div>
+
+    </div>
+
+</div>
+
+<!-- Alertas -->
+<script type="text/javascript">
+    var link_action;
+    $('a','.row-action-delete').click(function(event){ event.preventDefault(); link_action = $(this).attr('href'); $('#eliminar-post').dialog('open'); });
+    $(function() { $("#eliminar-post").dialog({ autoOpen: false, width: 400, height:155, modal: true, buttons: { 'Cancelar': function() { $(this).dialog('close'); } ,'Aceptar': function() { location.href = link_action; } } }); });
+</script>
+<div id="eliminar-post" title="Dailyscript - Web | App | Media" class="confirm-dialog">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Deseas borrar permantentemente este enlace?. </p>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('tr','tbody').hover(function(){$(this).addClass('tr-hover'); },function(){$(this).removeClass('tr-hover'); },function() {});
+    });
+ </script>

@@ -12,8 +12,18 @@ h2 { font: normal 30px Arial, Helvetica, sans-serif; color:#131313; margin: 0; p
 h3 { font: bold 14px Arial, Helvetica, sans-serif; color:#282828; margin:0; padding: 0 }
 
 /***** Cabecera *****/
-div#contenedor-cabecera { margin:0; padding:0; background:url(../img/fondo.png); }
-div#cabecera { width:960px; margin:0 auto; padding:0; }
+
+div#contenedor-cabecera { margin:0; padding:0;
+		background-color: red;
+background-image: url(../img/rojo.png);
+background-repeat:no-repeat;
+
+width: 100%;
+/*background:#0c0c0c;*/ }
+div#cabecera { width:960px; margin:0 auto; padding:0;
+
+}
+
 /* Logo */
 div#logo { padding:0; margin:0; width:349px; float:left; }
 /* Social Media*/

@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
     <head>
     <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
     <meta name="copyright" content="Dailyscript &copy; 2010" />
@@ -16,11 +15,11 @@
     <?php echo Tag::js('jquery/jquery-ui.min');?>
     <?php echo Tag::js('jquery/jquery.kumbiaphp');?>
     <script type="text/javascript">
-        $(function() {$('input:submit, input:button, input:reset').button();$('a','#escritorio').button();$('a','.box-botones').button();});        
+        $(function() {$('input:submit, input:button, input:reset').button();$('a','#escritorio').button();$('a','.box-botones').button();});
         // <![CDATA[
             var myMenu;window.onload = function() { myMenu = new Menu("menu"); myMenu.init(); };
 	// ]]>
-    </script>   
+    </script>
     </head>
     <body>
 
@@ -35,11 +34,11 @@
                 </div>
             </div>
             <div class="clr"></div>
-        </div>     
+        </div>
 
         <!-- Cuerpo -->
         <div id="contenedor-pagina">
-            
+
             <!-- Menu -->
             <div id="contenedor-menu">
                 <div id="escritorio"><?php echo Html::link('dc-admin/','Principal',array('title'=>'Página de administración')); ?></div>
@@ -69,9 +68,9 @@
                         <span>Ajustes</span>
                         <?php echo Html::link('dc-admin/ajuste/comentarios/','Comentarios'); ?>
                     </div>
-                </div>                                                                
+                </div>
             </div>
-            
+
             <!-- Contenedor principal -->
             <div id="contenedor-cuerpo">
                 <!-- Contenido -->
@@ -79,9 +78,9 @@
                     <?php View::content(); ?>
                 </div>
                 <div class="clr"></div>
-            </div>                       
+            </div>
             <div class="clr"></div>
-        </div>        
+        </div>
 
         <!-- Pie -->
         <div id="contenedor-pie">
@@ -101,6 +100,6 @@
             <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se han encontrado errores al procesar el formulario. </p>
             <p>Por favor verifica los datos e intenta nuevamente</p>
         </div>
-        
+
     </body>
 </html>

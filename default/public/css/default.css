@@ -15,8 +15,7 @@ h3 { font: bold 14px Arial, Helvetica, sans-serif; color:#282828; margin:0; padd
 
 div#contenedor-cabecera { margin:0; padding:0;
 		background-color: red;
-background-image: url(../img/rojo.png);
-background-repeat:no-repeat;
+background-image: url(../img/fondo.png);
 
 width: 100%;
 /*background:#0c0c0c;*/ }
